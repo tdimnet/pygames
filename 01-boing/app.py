@@ -60,8 +60,14 @@ class Ball(Actor):
         self.dx, self.dy = dx, 0
         self.speed = 5
 
-    def update():
-        return
+    def update(self):
+        for i in range(self.speed):
+            original_x = self.x
+            self.x += self.dx
+            self.y += self.dy
+
+       # Needs to implement game object before moving on 
+
 
     def out(self):
         return
