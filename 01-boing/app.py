@@ -1,5 +1,5 @@
 import pgzero
-import sys
+import sys, math
 
 
 if sys.version_info < (3, 5):
@@ -31,4 +31,13 @@ HALF_WIDTH = WIDTH // 2
 HALF_HEIGHT = HEIGHT // 2
 PLAYER_SPEED = 6
 MAX_AI_SPEED = 6
+
+
+def normalize(x, y):
+    length = math.hypot(x, y)
+    return (x / length, y / length)
+
+
+
+
 
