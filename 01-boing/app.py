@@ -1,5 +1,6 @@
-import pgzero, pgzrun 
-import sys, math
+import pgzero, pgzrun, pygame
+import sys, math,random
+from enum import Enum
 
 
 if sys.version_info < (3, 5):
@@ -93,5 +94,22 @@ class Bat(Actor):
         return
 
     def ai(self):
+        return
+
+
+class Game:
+    def __init__(self, controls=(None, None)):
+        self.bats = [Bat(0, controls[0]), Bat(1, controls[1])]
+        self.ball = Ball(-1)
+        self.impacts = []
+        self.ai_offset = 0
+
+    def update(self):
+        return
+
+    def draw(self):
+        return
+
+    def play_sound(self):
         return
 
