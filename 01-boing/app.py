@@ -63,4 +63,7 @@ class Ball(Actor):
     def update():
         return
 
+    def out(self):
+        return
+
 
