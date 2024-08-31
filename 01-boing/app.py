@@ -1,4 +1,4 @@
-import pgzero
+import pgzero, pgzrun 
 import sys, math
 
 
@@ -39,5 +39,13 @@ def normalize(x, y):
 
 
 
+def sign(x):
+    return -1 if x < 0 else 1
+
+
+class Impact(Actor):
+    def __init__(self, pos):
+        super().__init__("blank", pos)
+        self.time = 0
 
 
