@@ -73,3 +73,25 @@ class Ball(Actor):
         return
 
 
+class Bat(Actor):
+    def __init__(self, player, move_func=None):
+        x = 40 if player == 0 else 760
+        y = HALF_HEIGHT
+        super().__init__("blank", (x, y))
+
+        self.player = player
+        self.score = 0
+
+        if move_func != None:
+            self.move_func = move_func
+        else:
+            self.move_func = self.ai
+
+        self.timer = 0
+
+    def update(self):
+        return
+
+    def ai(self):
+        return
+
