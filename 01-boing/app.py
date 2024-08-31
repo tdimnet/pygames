@@ -113,3 +113,33 @@ class Game:
     def play_sound(self):
         return
 
+
+def p1_controls():
+    return
+
+
+def p2_controls():
+    return
+
+
+class State(Enum):
+    MENU = 1
+    PLAY = 2
+    GAME_OVER = 3
+
+
+num_players = 1
+space_down = False
+
+
+def update():
+    return
+
+
+def draw():
+    return
+
+
+
+
+
