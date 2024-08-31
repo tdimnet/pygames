@@ -48,4 +48,19 @@ class Impact(Actor):
         super().__init__("blank", pos)
         self.time = 0
 
+    def update(self):
+        self.image = "impact" + str(self.time // 2)
+        self.time += 1
+
+
+class Ball(Actor):
+    def __init__(self, dx):
+        super().__init__("ball", (0, 0))
+        self.x, self.y = HALF_WIDTH, HALF_HEIGHT
+        self.dx, self.dy = dx, 0
+        self.speed = 5
+
+    def update():
+        return
+
 
