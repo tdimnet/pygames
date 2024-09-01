@@ -140,6 +140,20 @@ def draw():
     return
 
 
+try:
+    pygame.mixer.quit()
+    pygame.mixer.init()
 
+    music.play("theme")
+    music.set_volume(0.3)
+except:
+    print("Failed playing music")
+    pass
+
+
+
+state = State.MENU
+
+#pgzrun.go()
 
 
