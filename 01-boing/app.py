@@ -115,11 +115,25 @@ class Game:
 
 
 def p1_controls():
-    return
+    move = 0
+
+    if keyboard.z or keyboard.down:
+        move = PLAYER_SPEED
+    elif keyboard.a or keyboard.up:
+        move -= PLAYER_SPEED
+
+    return move
 
 
 def p2_controls():
-    return
+    move = 0
+
+    if keyboard.m:
+        move = PLAYER_SPEED
+    elif keyboard.k:
+        move -= PLAYER_SPEED
+
+    return move
 
 
 class State(Enum):
@@ -137,7 +151,14 @@ def update():
 
 
 def draw():
-    return
+    game.draw()
+
+    if state == State.MENU:
+        menu_image = "menu" + str(num_players - 1)
+        screen.blit(menu_image, (0, 0))
+
+    elif state == State.GAME_OVER:
+        screen.blit("over", (0, 0))
 
 
 try:
@@ -153,6 +174,7 @@ except:
 
 
 state = State.MENU
+game = Game()
 
 #pgzrun.go()
 
