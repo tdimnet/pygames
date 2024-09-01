@@ -147,7 +147,36 @@ space_down = False
 
 
 def update():
-    return
+    global state, game, num_players, space_down
+    space_pressed = False
+
+    if keyboard.space and not space_down:
+        space_pressed = True
+
+    space_down = keyboard.space
+
+    if state == State.MENU:
+        print("Hey, I'm on the menu!")
+        if space_pressed:
+            state = State.PLAY
+            controls = [p1_controls]
+        else:
+            if num_players == 2 and keyboard.up:
+                print("Removing one player")
+                sounds.up.play()
+                num_players = 1
+            elif num_players == 1 and keyboard.down:
+                print("Adding one player")
+                sounds.down.play()
+                num_players = 2
+
+    elif state == State.PLAY:
+        print("Let's play")
+        pass
+
+    elif state == State.GAME_OVER:
+        print("It's game over")
+        pass
 
 
 def draw():
@@ -176,6 +205,6 @@ except:
 state = State.MENU
 game = Game()
 
-#pgzrun.go()
+pgzrun.go()
 
 
