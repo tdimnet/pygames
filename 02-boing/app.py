@@ -60,6 +60,7 @@ def update():
     print("=====")
 
 
+# Draw is called before update?
 def draw():
 
     print("=====")
@@ -67,6 +68,13 @@ def draw():
     print("=====")
     print("=====")
     print("=====")
+
+    if state == State.MENU:
+        menu_image = "menu" + str(num_players - 1)
+        screen.blit(menu_image, (0, 0))
+
+    elif state == State.GAME_OVER:
+        screen.blit("over", (0, 0))
 
 try:
     pygame.mixer.quit()
@@ -80,7 +88,7 @@ except:
 
 
 
-state = State.MENU
+state = State.GAME_OVER
 
 pgzrun.go()
 
