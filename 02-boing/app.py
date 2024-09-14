@@ -34,108 +34,6 @@ PLAYER_SPEED = 6
 MAX_AI_SPEED = 6
 
 
-def normalize(x, y):
-    length = math.hypot(x, y)
-    return (x / length, y / length)
-
-
-
-def sign(x):
-    return -1 if x < 0 else 1
-
-
-class Impact(Actor):
-    def __init__(self, pos):
-        super().__init__("blank", pos)
-        self.time = 0
-
-    def update(self):
-        self.image = "impact" + str(self.time // 2)
-        self.time += 1
-
-
-class Ball(Actor):
-    def __init__(self, dx):
-        super().__init__("ball", (0, 0))
-        self.x, self.y = HALF_WIDTH, HALF_HEIGHT
-        self.dx, self.dy = dx, 0
-        self.speed = 5
-
-    def update(self):
-        for i in range(self.speed):
-            original_x = self.x
-            self.x += self.dx
-            self.y += self.dy
-
-       # Needs to implement game object before moving on 
-
-
-    def out(self):
-        return
-
-
-class Bat(Actor):
-    def __init__(self, player, move_func=None):
-        x = 40 if player == 0 else 760
-        y = HALF_HEIGHT
-        super().__init__("blank", (x, y))
-
-        self.player = player
-        self.score = 0
-
-        if move_func != None:
-            self.move_func = move_func
-        else:
-            self.move_func = self.ai
-
-        self.timer = 0
-
-    def update(self):
-        return
-
-    def ai(self):
-        return
-
-
-class Game:
-    def __init__(self, controls=(None, None)):
-        self.bats = [Bat(0, controls[0]), Bat(1, controls[1])]
-        self.ball = Ball(-1)
-        self.impacts = []
-        self.ai_offset = 0
-
-    def update(self):
-        return
-
-    def draw(self):
-        return
-
-    def play_sound(self):
-        return
-
-
-def p1_controls():
-    move = 0
-
-    if keyboard.z or keyboard.down:
-        move = PLAYER_SPEED
-    elif keyboard.a or keyboard.up:
-        move -= PLAYER_SPEED
-
-    return move
-
-
-def p2_controls():
-    move = 0
-
-    if keyboard.m:
-        move = PLAYER_SPEED
-    elif keyboard.k:
-        move -= PLAYER_SPEED
-
-    return move
-
-
 class State(Enum):
     MENU = 1
     PLAY = 2
@@ -147,7 +45,7 @@ space_down = False
 
 
 def update():
-    global state, game, num_players, space_down
+    global state, num_players, space_down
     space_pressed = False
 
     if keyboard.space and not space_down:
@@ -155,40 +53,20 @@ def update():
 
     space_down = keyboard.space
 
-    if state == State.MENU:
-        print("Hey, I'm on the menu!")
-        if space_pressed:
-            state = State.PLAY
-            controls = [p1_controls]
-        else:
-            if num_players == 2 and keyboard.up:
-                print("Removing one player")
-                sounds.up.play()
-                num_players = 1
-            elif num_players == 1 and keyboard.down:
-                print("Adding one player")
-                sounds.down.play()
-                num_players = 2
-
-    elif state == State.PLAY:
-        print("Let's play")
-        pass
-
-    elif state == State.GAME_OVER:
-        print("It's game over")
-        pass
+    print("=====")
+    print("Update has been called")
+    print("=====")
+    print("=====")
+    print("=====")
 
 
 def draw():
-    game.draw()
 
-    if state == State.MENU:
-        menu_image = "menu" + str(num_players - 1)
-        screen.blit(menu_image, (0, 0))
-
-    elif state == State.GAME_OVER:
-        screen.blit("over", (0, 0))
-
+    print("=====")
+    print("Draw has been called")
+    print("=====")
+    print("=====")
+    print("=====")
 
 try:
     pygame.mixer.quit()
@@ -203,7 +81,6 @@ except:
 
 
 state = State.MENU
-game = Game()
 
 pgzrun.go()
 
