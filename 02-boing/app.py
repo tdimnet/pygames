@@ -59,6 +59,25 @@ def update():
     print("=====")
     print("=====")
 
+    if keyboard.up:
+        print("++++++")
+        print("Keyboard up")
+        print("++++++")
+
+        sounds.up.play()
+
+        num_players = 1
+
+    elif keyboard.down:
+        print("++++++")
+        print("Keyboard down")
+        print("++++++")
+
+        sounds.down.play()
+
+
+        num_players = 2
+
 
 # Draw is called before update?
 def draw():
@@ -88,7 +107,7 @@ except:
 
 
 
-state = State.GAME_OVER
+state = State.MENU
 
 pgzrun.go()
 
