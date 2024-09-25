@@ -1,6 +1,16 @@
 import pgzero, pgzrun, pygame
-import sys, math,random
+import sys, math, random
 from enum import Enum
+
+from constants import (
+    WIDTH,
+    HEIGHT,
+    TITLE,
+    HALF_HEIGHT,
+    HALF_WIDTH,
+    PLAYER_SPEED,
+    MAX_AI_SPEED
+)
 
 
 if sys.version_info < (3, 5):
@@ -24,26 +34,30 @@ else:
 print("Let's ready to start the game")
 
 
-WIDTH = 800
-HEIGHT = 480
-TITLE = "Boing!"
+class Bat(Actor):
+    def __init__(self, player=None, move_func=None):
+        x = 40
+        y = HALF_HEIGHT
+        super().__init__("blank", (x, y))
 
-HALF_WIDTH = WIDTH // 2
-HALF_HEIGHT = HEIGHT // 2
-PLAYER_SPEED = 6
-MAX_AI_SPEED = 6
+    def update(self):
+        self.image = "bat00" 
+
+    def ai(self):
+        pass
+
 
 
 class Game:
     def __init__(self, controls=(None, None)):
-        print("Game has been init")
         pass
 
     def update(self):
-        pass
+        print("Update method has been called!")
+        sys.exit(1)
 
     def draw(self):
-        pass
+        screen.blit("table", (0, 0))
 
     def play_sound(self, name, count=1):
         pass
@@ -68,38 +82,32 @@ def update():
 
     space_down = keyboard.space
 
-    print("=====")
-    print("Update has been called")
-    print("=====")
-    print("=====")
-    print("=====")
+    if state == State.MENU:
+        if space_pressed:
+            state = State.PLAY
+        else:
+            if keyboard.up:
+                print("++++++")
+                print("Keyboard up")
+                print("++++++")
 
-    if keyboard.up:
-        print("++++++")
-        print("Keyboard up")
-        print("++++++")
+                sounds.up.play()
+                num_players = 1
 
-        sounds.up.play()
+            elif keyboard.down:
+                print("++++++")
+                print("Keyboard down")
+                print("++++++")
 
-        num_players = 1
+                sounds.down.play()
+                num_players = 2
 
-    elif keyboard.down:
-        print("++++++")
-        print("Keyboard down")
-        print("++++++")
-
-        sounds.down.play()
-
-        num_players = 2
+    elif state == State.PLAY:
+        game.update()
 
 
-# Draw is called before update?
 def draw():
-    print("=====")
-    print("Draw has been called")
-    print("=====")
-    print("=====")
-    print("=====")
+    game.draw()
 
     if state == State.MENU:
         menu_image = "menu" + str(num_players - 1)
@@ -121,6 +129,7 @@ except:
 
 
 state = State.MENU
+game = Game()
 
 pgzrun.go()
 
