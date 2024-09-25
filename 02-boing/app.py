@@ -34,6 +34,21 @@ PLAYER_SPEED = 6
 MAX_AI_SPEED = 6
 
 
+class Game:
+    def __init__(self, controls=(None, None)):
+        print("Game has been init")
+        pass
+
+    def update(self):
+        pass
+
+    def draw(self):
+        pass
+
+    def play_sound(self, name, count=1):
+        pass
+
+
 class State(Enum):
     MENU = 1
     PLAY = 2
@@ -75,13 +90,11 @@ def update():
 
         sounds.down.play()
 
-
         num_players = 2
 
 
 # Draw is called before update?
 def draw():
-
     print("=====")
     print("Draw has been called")
     print("=====")
