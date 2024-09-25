@@ -41,7 +41,7 @@ class Bat(Actor):
         super().__init__("blank", (x, y))
 
     def update(self):
-        self.image = "bat00" 
+        self.image = "bat00"
 
     def ai(self):
         pass
@@ -50,14 +50,15 @@ class Bat(Actor):
 
 class Game:
     def __init__(self, controls=(None, None)):
-        pass
+        self.bat = Bat()
 
     def update(self):
-        print("Update method has been called!")
-        sys.exit(1)
+        self.bat.update()
 
     def draw(self):
         screen.blit("table", (0, 0))
+
+        self.bat.draw()
 
     def play_sound(self, name, count=1):
         pass
