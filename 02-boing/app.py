@@ -9,7 +9,8 @@ from constants import (
     HALF_HEIGHT,
     HALF_WIDTH,
     PLAYER_SPEED,
-    MAX_AI_SPEED
+    MAX_AI_SPEED,
+    State
 )
 
 
@@ -34,13 +35,31 @@ else:
 print("Let's ready to start the game")
 
 
+# For now I put p1 controls here
+def p1_controls():
+    move = 0
+
+    if keyboard.z or keyboard.down:
+        move = PLAYER_SPEED
+    elif keyboard.a or keyboard.up:
+        move -= PLAYER_SPEED
+
+    return move
+
+
 class Bat(Actor):
-    def __init__(self, player=None, move_func=None):
+    def __init__(self, player=None, move_func=p1_controls):
         x = 40
         y = HALF_HEIGHT
         super().__init__("blank", (x, y))
+        self.move_func = move_func
 
     def update(self):
+        y_movement = self.move_func()
+        self.y = min(400, max(80, self.y + y_movement))
+
+        print(self.y)
+
         self.image = "bat00"
 
     def ai(self):
@@ -64,14 +83,13 @@ class Game:
         pass
 
 
-class State(Enum):
-    MENU = 1
-    PLAY = 2
-    GAME_OVER = 3
-
-
 num_players = 1
 space_down = False
+
+
+
+def p2_controls():
+    pass
 
 
 def update():
