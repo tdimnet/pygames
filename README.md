@@ -3,6 +3,8 @@ Collection of games built with Python on my Raspberry Pi.
 
 You can run them on Linux, Mac, and Windows, as long as Python is installed on your machine.
 
+**TODO**: Need to add virtual env settings (Switching to Py to my Mac)
+
 ## Prerequisites
 
 - Python (FYI, I use 3.12).
