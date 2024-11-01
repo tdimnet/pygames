@@ -49,10 +49,28 @@ def p1_controls():
 
 class Ball(Actor):
     def __init__(self):
-        super().__init__("bat00", (HALF_WIDTH, HALF_HEIGHT))
+        super().__init__("ball", (0, 0))
+        self.x = HALF_WIDTH
+        self.y = HALF_HEIGHT
+        self.dx, self.dy = 5, 2
+        self.speed = 1
+
 
     def update(self):
-        print("Update method is been called on ball object")
+        for i in range(self.speed):
+            original_x = self.x
+            self.x += self.dx
+            self.y += self.dy
+
+            # if abs(self.x - HALF_WIDTH) > 344:
+            if abs(self.x - HALF_WIDTH) > 380:
+                self.dx = -self.dx
+                self.x += self.dx
+
+            if abs(self.y - HALF_HEIGHT) > 220:
+                self.dy = -self.dy
+                self.y += self.dy
+
 
 
 class Bat(Actor):
@@ -66,7 +84,7 @@ class Bat(Actor):
         y_movement = self.move_func()
         self.y = min(400, max(80, self.y + y_movement))
 
-        print(self.y)
+        # print(self.y)
 
     def ai(self):
         pass
@@ -80,12 +98,12 @@ class Game:
 
     def update(self):
         self.bat.update()
-        # self.ball.update()
+        self.ball.update()
 
     def draw(self):
         screen.blit("table", (0, 0))
 
-        self.bat.draw()
+        # self.bat.draw()
         self.ball.draw()
 
     def play_sound(self, name, count=1):
