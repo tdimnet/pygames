@@ -47,11 +47,19 @@ def p1_controls():
     return move
 
 
+class Ball(Actor):
+    def __init__(self):
+        super().__init__("bat00", (HALF_WIDTH, HALF_HEIGHT))
+
+    def update(self):
+        print("Update method is been called on ball object")
+
+
 class Bat(Actor):
     def __init__(self, player=None, move_func=p1_controls):
         x = 40
         y = HALF_HEIGHT
-        super().__init__("blank", (x, y))
+        super().__init__("bat00", (x, y))
         self.move_func = move_func
 
     def update(self):
@@ -59,8 +67,6 @@ class Bat(Actor):
         self.y = min(400, max(80, self.y + y_movement))
 
         print(self.y)
-
-        self.image = "bat00"
 
     def ai(self):
         pass
@@ -70,14 +76,17 @@ class Bat(Actor):
 class Game:
     def __init__(self, controls=(None, None)):
         self.bat = Bat()
+        self.ball = Ball()
 
     def update(self):
         self.bat.update()
+        # self.ball.update()
 
     def draw(self):
         screen.blit("table", (0, 0))
 
         self.bat.draw()
+        self.ball.draw()
 
     def play_sound(self, name, count=1):
         pass
@@ -136,11 +145,12 @@ def draw():
         screen.blit("over", (0, 0))
 
 try:
-    pygame.mixer.quit()
-    pygame.mixer.init()
+    pass
+    # pygame.mixer.quit()
+    # pygame.mixer.init()
 
-    music.play("theme")
-    music.set_volume(0.3)
+    # music.play("theme")
+    # music.set_volume(0.1)
 except:
     print("Failed playing music")
     pass
