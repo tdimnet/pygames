@@ -57,15 +57,23 @@ class Ball(Actor):
 
 
     def update(self):
+        bat = game.bat
+
         for i in range(self.speed):
             original_x = self.x
             self.x += self.dx
             self.y += self.dy
 
-            # if abs(self.x - HALF_WIDTH) > 344:
-            if abs(self.x - HALF_WIDTH) > 380:
+            if abs(self.x - HALF_WIDTH) > 344:
                 self.dx = -self.dx
                 self.x += self.dx
+
+                difference_y = self.y - bat.y
+
+                print("The difference between bat is: {}".format(difference_y))
+
+                if difference_y > -64 and difference_y < 64:
+                    print("Bat and Ball made contact!")
 
             if abs(self.y - HALF_HEIGHT) > 220:
                 self.dy = -self.dy
@@ -103,7 +111,7 @@ class Game:
     def draw(self):
         screen.blit("table", (0, 0))
 
-        # self.bat.draw()
+        self.bat.draw()
         self.ball.draw()
 
     def play_sound(self, name, count=1):
