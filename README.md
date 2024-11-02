@@ -12,6 +12,8 @@ You can run them on Linux, Mac, and Windows, as long as Python is installed on y
 
 ## How to install
 
+### On Mac (and probably Linux)
+
 Once the repo has been cloned on your computer, cd into on the game, e.g. `cd 02-boing`.
 
 
@@ -41,6 +43,21 @@ To exit the virtual env (once you finish playing with the games).
 ```
 deactivate
 ```
+
+
+### On Windows
+
+**Please, be cafeful**: I haven't been able to add venv with Windows.
+So we'll have to install everything globaly.
+
+Once the repo has been cloned on your computer, cd into on the game, e.g. `cd 02-boing`.
+
+- Installing the dependencies
+
+```
+$ pip install -r requirements.txt
+```
+
 
 
 ## How to play?
