@@ -64,16 +64,27 @@ class Ball(Actor):
             self.x += self.dx
             self.y += self.dy
 
-            if abs(self.x - HALF_WIDTH) > 344:
+            difference_y = self.y - bat.y
+
+            # print("The difference between bat is: {}".format(difference_y))
+
+            if difference_y > -64 and difference_y < 64:
+                # print("Bat and Ball made contact!")
+                pass
+
+            # print("Current x is {}".format(self.x))
+            # print("Self.x - HALF_WIDTH: {}".format(self.x - HALF_WIDTH))
+            
+            if self.x - HALF_WIDTH > 344:
+            # if abs(self.x - HALF_WIDTH) > 344:
+                self.dx = -self.dx
+                self.x += self.dx
+            elif self.x - HALF_WIDTH < -344 and difference_y > -64 and difference_y < 64:
+                print("Bat and Ball made contact!")
                 self.dx = -self.dx
                 self.x += self.dx
 
-                difference_y = self.y - bat.y
-
-                print("The difference between bat is: {}".format(difference_y))
-
-                if difference_y > -64 and difference_y < 64:
-                    print("Bat and Ball made contact!")
+                
 
             if abs(self.y - HALF_HEIGHT) > 220:
                 self.dy = -self.dy
