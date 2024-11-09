@@ -55,8 +55,11 @@ class Ball(Actor):
         self.dx, self.dy = 5, 2
         self.speed = 1
 
-
     def update(self):
+        print("======")
+        print(self.x)
+        print("======")
+
         bat = game.bat
 
         for i in range(self.speed):
@@ -65,18 +68,8 @@ class Ball(Actor):
             self.y += self.dy
 
             difference_y = self.y - bat.y
-
-            # print("The difference between bat is: {}".format(difference_y))
-
-            if difference_y > -64 and difference_y < 64:
-                # print("Bat and Ball made contact!")
-                pass
-
-            # print("Current x is {}".format(self.x))
-            # print("Self.x - HALF_WIDTH: {}".format(self.x - HALF_WIDTH))
             
             if self.x - HALF_WIDTH > 344:
-            # if abs(self.x - HALF_WIDTH) > 344:
                 self.dx = -self.dx
                 self.x += self.dx
             elif self.x - HALF_WIDTH < -344 and difference_y > -64 and difference_y < 64:
@@ -84,16 +77,17 @@ class Ball(Actor):
                 self.dx = -self.dx
                 self.x += self.dx
                 print(game.score)
-                
+
                 game.score += 1
 
                 print(game.score)
 
-                
-
             if abs(self.y - HALF_HEIGHT) > 220:
                 self.dy = -self.dy
                 self.y += self.dy
+
+    def is_out(self):
+        return self.x < 0
 
 
 
@@ -158,26 +152,25 @@ def update():
             state = State.PLAY
         else:
             if keyboard.up:
-                print("++++++")
-                print("Keyboard up")
-                print("++++++")
-
                 sounds.up.play()
                 num_players = 1
 
             elif keyboard.down:
-                print("++++++")
-                print("Keyboard down")
-                print("++++++")
-
                 sounds.down.play()
                 num_players = 2
 
     elif state == State.PLAY:
-        game.update()
+        if game.ball.is_out():
+            state = State.GAME_OVER
+            game.ball.speed = 0
+        else:
+            game.update()
+
+
 
 
 def draw():
+    """This function is finished. I don't need to update it"""
     game.draw()
 
     if state == State.MENU:
