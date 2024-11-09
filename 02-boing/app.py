@@ -83,6 +83,11 @@ class Ball(Actor):
                 print("Bat and Ball made contact!")
                 self.dx = -self.dx
                 self.x += self.dx
+                print(game.score)
+                
+                game.score += 1
+
+                print(game.score)
 
                 
 
@@ -114,6 +119,7 @@ class Game:
     def __init__(self, controls=(None, None)):
         self.bat = Bat()
         self.ball = Ball()
+        self.score = 0
 
     def update(self):
         self.bat.update()
