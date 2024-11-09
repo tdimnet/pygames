@@ -174,7 +174,7 @@ def draw():
     game.draw()
 
     if state == State.MENU:
-        menu_image = "menu" + str(num_players - 1)
+        menu_image = "menu"
         screen.blit(menu_image, (0, 0))
 
     elif state == State.GAME_OVER:
