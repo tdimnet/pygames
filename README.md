@@ -31,14 +31,14 @@ Once the repo has been cloned on your computer, cd into on the game, e.g. `cd 01
 - Setting up venv
 
 ```
-$ python3 -m venv venv
+$ python3 -m venv .venv
 ```
 
 
 - Launching the virtual environment
 
 ```
-$ source venv/bin/activate
+$ source .venv/bin/activate
 ```
 
 
